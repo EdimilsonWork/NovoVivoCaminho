@@ -1,6 +1,0 @@
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho.Models\bin\Debug\NovoVivoCaminho.Models.dll
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho.Models\bin\Debug\NovoVivoCaminho.Models.pdb
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho.Models\obj\Debug\NovoVivoCaminho.Models.csprojResolveAssemblyReference.cache
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho.Models\obj\Debug\NovoVivoCaminho.Models.dll
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho.Models\obj\Debug\NovoVivoCaminho.Models.pdb
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho.Models\obj\Debug\NovoVivoCaminho.Models.csproj.CoreCompileInputs.cache

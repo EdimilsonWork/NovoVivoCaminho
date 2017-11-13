@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="NVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dizimos" EntityType="NVCModel.Dizimos" />
+    <EntitySet Name="Equipes" EntityType="NVCModel.Equipes" />
+    <EntitySet Name="Usuarios" EntityType="NVCModel.Usuarios" />
+    <EntitySet Name="Igrejas" EntityType="NVCModel.Igrejas" />
+    <AssociationSet Name="FK_Equipes_Igrejas" Association="NVCModel.FK_Equipes_Igrejas">
+      <End Role="Igrejas" EntitySet="Igrejas" />
+      <End Role="Equipes" EntitySet="Equipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Igrejas" Association="NVCModel.FK_Usuarios_Igrejas">
+      <End Role="Igrejas" EntitySet="Igrejas" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <EntitySet Name="Membros" EntityType="NVCModel.Membros" />
+    <AssociationSet Name="FK_Dizimos_Membros" Association="NVCModel.FK_Dizimos_Membros">
+      <End Role="Membros" EntitySet="Membros" />
+      <End Role="Dizimos" EntitySet="Dizimos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Membros_Equipes" Association="NVCModel.FK_Membros_Equipes">
+      <End Role="Equipes" EntitySet="Equipes" />
+      <End Role="Membros" EntitySet="Membros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Membros_Igrejas" Association="NVCModel.FK_Membros_Igrejas">
+      <End Role="Igrejas" EntitySet="Igrejas" />
+      <End Role="Membros" EntitySet="Membros" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Dizimos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDMembro" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Data" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Membros" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Dizimos" ToRole="Membros" />
+  </EntityType>
+  <EntityType Name="Equipes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IDIgreja" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Igrejas" Relationship="NVCModel.FK_Equipes_Igrejas" FromRole="Equipes" ToRole="Igrejas" />
+    <NavigationProperty Name="Membros" Relationship="NVCModel.FK_Membros_Equipes" FromRole="Equipes" ToRole="Membros" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDIgreja" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Senha" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DataAtualizacao" Type="DateTime" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Igrejas" Relationship="NVCModel.FK_Usuarios_Igrejas" FromRole="Usuarios" ToRole="Igrejas" />
+  </EntityType>
+  <EntityType Name="Igrejas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <Property Name="Equipe" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Equipes" Relationship="NVCModel.FK_Equipes_Igrejas" FromRole="Igrejas" ToRole="Equipes" />
+    <NavigationProperty Name="Usuarios" Relationship="NVCModel.FK_Usuarios_Igrejas" FromRole="Igrejas" ToRole="Usuarios" />
+    <NavigationProperty Name="Membros" Relationship="NVCModel.FK_Membros_Igrejas" FromRole="Igrejas" ToRole="Membros" />
+  </EntityType>
+  <Association Name="FK_Equipes_Igrejas">
+    <End Type="NVCModel.Igrejas" Role="Igrejas" Multiplicity="1" />
+    <End Type="NVCModel.Equipes" Role="Equipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igrejas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Equipes">
+        <PropertyRef Name="IDIgreja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Igrejas">
+    <End Type="NVCModel.Igrejas" Role="Igrejas" Multiplicity="1" />
+    <End Type="NVCModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igrejas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="IDIgreja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Membros">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDIgreja" Type="Int32" Nullable="false" />
+    <Property Name="IDEquipe" Type="Int32" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Endereco" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Numero" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Complemento" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Bairro" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Cidade" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="UF" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="CEP" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="DDD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Fone" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="EstadoCivil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Batizado" Type="Boolean" />
+    <Property Name="DataDeNascimento" Type="DateTime" Precision="3" />
+    <Property Name="MembroDesde" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Dizimos" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Membros" ToRole="Dizimos" />
+    <NavigationProperty Name="Equipes" Relationship="NVCModel.FK_Membros_Equipes" FromRole="Membros" ToRole="Equipes" />
+    <NavigationProperty Name="Igrejas" Relationship="NVCModel.FK_Membros_Igrejas" FromRole="Membros" ToRole="Igrejas" />
+  </EntityType>
+  <Association Name="FK_Dizimos_Membros">
+    <End Type="NVCModel.Membros" Role="Membros" Multiplicity="1" />
+    <End Type="NVCModel.Dizimos" Role="Dizimos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membros">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dizimos">
+        <PropertyRef Name="IDMembro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Membros_Equipes">
+    <End Type="NVCModel.Equipes" Role="Equipes" Multiplicity="0..1" />
+    <End Type="NVCModel.Membros" Role="Membros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Membros">
+        <PropertyRef Name="IDEquipe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Membros_Igrejas">
+    <End Type="NVCModel.Igrejas" Role="Igrejas" Multiplicity="1" />
+    <End Type="NVCModel.Membros" Role="Membros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igrejas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Membros">
+        <PropertyRef Name="IDIgreja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

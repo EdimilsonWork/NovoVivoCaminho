@@ -1,0 +1,133 @@
+﻿@model IEnumerable<NovoVivoCaminho.Models.Membros>
+
+@{
+    ViewBag.Title = "Membros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Membros</h2>
+
+<p type="button" class="btn btn-xs">
+    @Html.ActionLink("Novo", "Create")
+</p>
+<table class="table table-hover table-striped table-bordered text-center">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        @*<th class="text-center">
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Complemento)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.UF)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.CEP)*@
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.DDD)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Fone)
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Estado Civil")
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Batizado)
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Data de Nascimento")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Membro Desde")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Equipe")
+        </th>
+        @*<th class="text-center">
+            @Html.DisplayName("Igreja")
+        </th>*@
+        <th class="text-center">
+            Opções
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complemento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bairro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CEP)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DDD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoCivil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Batizado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MembroDesde)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipes.Nome)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Igrejas.Nome)
+            </td>*@
+            <td>
+                @Html.ActionLink("Detalhe", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-xs", type = "button" })
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs", type = "button" })
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-xs", type = "button" })
+            </td>
+        </tr>
+    }
+
+</table>

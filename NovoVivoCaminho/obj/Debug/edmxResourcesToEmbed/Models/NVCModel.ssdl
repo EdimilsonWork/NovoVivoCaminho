@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dizimos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDMembro" Type="int" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Data" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Equipes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="IDIgreja" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Igrejas">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="Equipe" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Membros">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDIgreja" Type="int" Nullable="false" />
+    <Property Name="IDEquipe" Type="int" />
+    <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="250" />
+    <Property Name="Endereco" Type="varchar" MaxLength="250" />
+    <Property Name="Numero" Type="varchar" MaxLength="250" />
+    <Property Name="Complemento" Type="varchar" MaxLength="250" />
+    <Property Name="Bairro" Type="varchar" MaxLength="250" />
+    <Property Name="Cidade" Type="varchar" MaxLength="250" />
+    <Property Name="UF" Type="varchar" MaxLength="2" />
+    <Property Name="CEP" Type="varchar" MaxLength="8" />
+    <Property Name="DDD" Type="varchar" MaxLength="2" />
+    <Property Name="Fone" Type="varchar" MaxLength="9" />
+    <Property Name="EstadoCivil" Type="varchar" MaxLength="50" />
+    <Property Name="Batizado" Type="bit" />
+    <Property Name="DataDeNascimento" Type="datetime" />
+    <Property Name="MembroDesde" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDIgreja" Type="int" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Senha" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="250" />
+    <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+    <Property Name="DataAtualizacao" Type="datetime" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Dizimos_Membros">
+    <End Role="Membros" Type="Self.Membros" Multiplicity="1" />
+    <End Role="Dizimos" Type="Self.Dizimos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membros">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dizimos">
+        <PropertyRef Name="IDMembro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Equipes_Igrejas">
+    <End Role="Igrejas" Type="Self.Igrejas" Multiplicity="1" />
+    <End Role="Equipes" Type="Self.Equipes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igrejas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Equipes">
+        <PropertyRef Name="IDIgreja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Membros_Equipes">
+    <End Role="Equipes" Type="Self.Equipes" Multiplicity="0..1" />
+    <End Role="Membros" Type="Self.Membros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Membros">
+        <PropertyRef Name="IDEquipe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Membros_Igrejas">
+    <End Role="Igrejas" Type="Self.Igrejas" Multiplicity="1" />
+    <End Role="Membros" Type="Self.Membros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igrejas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Membros">
+        <PropertyRef Name="IDIgreja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Igrejas">
+    <End Role="Igrejas" Type="Self.Igrejas" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Igrejas">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="IDIgreja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NVCModelStoreContainer">
+    <EntitySet Name="Dizimos" EntityType="Self.Dizimos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipes" EntityType="Self.Equipes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Igrejas" EntityType="Self.Igrejas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Membros" EntityType="Self.Membros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Dizimos_Membros" Association="Self.FK_Dizimos_Membros">
+      <End Role="Membros" EntitySet="Membros" />
+      <End Role="Dizimos" EntitySet="Dizimos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Equipes_Igrejas" Association="Self.FK_Equipes_Igrejas">
+      <End Role="Igrejas" EntitySet="Igrejas" />
+      <End Role="Equipes" EntitySet="Equipes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Membros_Equipes" Association="Self.FK_Membros_Equipes">
+      <End Role="Equipes" EntitySet="Equipes" />
+      <End Role="Membros" EntitySet="Membros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Membros_Igrejas" Association="Self.FK_Membros_Igrejas">
+      <End Role="Igrejas" EntitySet="Igrejas" />
+      <End Role="Membros" EntitySet="Membros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Igrejas" Association="Self.FK_Usuarios_Igrejas">
+      <End Role="Igrejas" EntitySet="Igrejas" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

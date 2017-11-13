@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NVCModelStoreContainer" CdmEntityContainer="NVCEntities">
+    <EntitySetMapping Name="Dizimos">
+      <EntityTypeMapping TypeName="NVCModel.Dizimos">
+        <MappingFragment StoreEntitySet="Dizimos">
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="IDMembro" ColumnName="IDMembro" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipes">
+      <EntityTypeMapping TypeName="NVCModel.Equipes">
+        <MappingFragment StoreEntitySet="Equipes">
+          <ScalarProperty Name="IDIgreja" ColumnName="IDIgreja" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="NVCModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+          <ScalarProperty Name="DataAtualizacao" ColumnName="DataAtualizacao" />
+          <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="IDIgreja" ColumnName="IDIgreja" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Igrejas">
+      <EntityTypeMapping TypeName="NVCModel.Igrejas">
+        <MappingFragment StoreEntitySet="Igrejas">
+          <ScalarProperty Name="Equipe" ColumnName="Equipe" />
+          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Membros">
+      <EntityTypeMapping TypeName="NVCModel.Membros">
+        <MappingFragment StoreEntitySet="Membros">
+          <ScalarProperty Name="MembroDesde" ColumnName="MembroDesde" />
+          <ScalarProperty Name="DataDeNascimento" ColumnName="DataDeNascimento" />
+          <ScalarProperty Name="Batizado" ColumnName="Batizado" />
+          <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
+          <ScalarProperty Name="Fone" ColumnName="Fone" />
+          <ScalarProperty Name="DDD" ColumnName="DDD" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+          <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="IDEquipe" ColumnName="IDEquipe" />
+          <ScalarProperty Name="IDIgreja" ColumnName="IDIgreja" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
