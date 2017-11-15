@@ -15,9 +15,9 @@
         <th class="text-center">
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th class="text-center">
+        @*<th class="text-center">
             @Html.DisplayNameFor(model => model.Igrejas.Nome)
-        </th>
+        </th>*@
         <th class="text-center">
             Opções
         </th>
@@ -29,9 +29,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Igrejas.Nome)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Detalhe", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-xs", type = "button" })
                 @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs", type = "button" })
