@@ -11,12 +11,16 @@ namespace NovoVivoCaminho.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Dizimos
     {
         public int ID { get; set; }
         public int IDMembro { get; set; }
         public Nullable<decimal> Valor { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Data { get; set; }
     
         public virtual Membros Membros { get; set; }
