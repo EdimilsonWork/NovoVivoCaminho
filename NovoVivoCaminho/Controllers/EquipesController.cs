@@ -17,7 +17,7 @@ namespace NovoVivoCaminho.Controllers
         // GET: Equipes
         public ActionResult Index()
         {
-            var equipes = db.Equipes.Include(e => e.Igrejas);
+            var equipes = db.Equipes.Include(e => e.Igrejas).OrderBy(x => x.Nome);
             return View(equipes.ToList());
         }
 

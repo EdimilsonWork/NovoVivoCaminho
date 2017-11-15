@@ -17,7 +17,7 @@ namespace NovoVivoCaminho.Controllers
         // GET: Igrejas
         public ActionResult Index()
         {
-            return View(db.Igrejas.ToList());
+            return View(db.Igrejas.ToList().OrderBy(x => x.Nome));
         }
 
         // GET: Igrejas/Details/5

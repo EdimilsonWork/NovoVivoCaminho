@@ -18,7 +18,7 @@ namespace NovoVivoCaminho.Controllers
         // GET: Membros
         public ActionResult Index()
         {
-            var membros = db.Membros.Include(m => m.Equipes).Include(m => m.Igrejas);
+            var membros = db.Membros.Include(m => m.Equipes).Include(m => m.Igrejas).OrderBy(x => x.Nome);
             return View(membros.ToList());
         }
 
@@ -41,9 +41,10 @@ namespace NovoVivoCaminho.Controllers
         public ActionResult Create()
         {
             ViewBag.TiposDeEnderecos = comum.TiposDeEnderecos;
+            ViewBag.EstadoCivil = comum.EstadoCivil;
 
-            ViewBag.IDEquipe = new SelectList(db.Equipes, "ID", "Nome");
-            ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome");
+            ViewBag.IDEquipe = new SelectList(db.Equipes.OrderBy(x => x.Nome), "ID", "Nome");
+            ViewBag.IDIgreja = new SelectList(db.Igrejas.OrderBy(x => x.Nome), "ID", "Nome");
             return View();
         }
 

@@ -39,7 +39,7 @@ namespace NovoVivoCaminho.Controllers
         // GET: Dizimos/Create
         public ActionResult Create()
         {
-            ViewBag.IDMembro = new SelectList(db.Membros, "ID", "Nome");
+            ViewBag.IDMembro = new SelectList(db.Membros.OrderBy(x => x.Nome), "ID", "Nome");
             return View();
         }
 

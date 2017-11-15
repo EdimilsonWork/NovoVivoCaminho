@@ -39,7 +39,7 @@ namespace NovoVivoCaminho.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
-            ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome");
+            ViewBag.IDIgreja = new SelectList(db.Igrejas.OrderBy(x => x.Nome), "ID", "Nome");
             return View();
         }
 
