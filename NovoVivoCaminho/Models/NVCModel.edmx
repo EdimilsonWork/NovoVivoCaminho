@@ -50,7 +50,7 @@
           <Property Name="DDD" Type="varchar" MaxLength="2" />
           <Property Name="Fone" Type="varchar" MaxLength="9" />
           <Property Name="EstadoCivil" Type="varchar" MaxLength="50" />
-          <Property Name="Batizado" Type="bit" />
+          <Property Name="Batizado" Type="bit" Nullable="false" />
           <Property Name="DataDeNascimento" Type="datetime" />
           <Property Name="MembroDesde" Type="datetime" />
         </EntityType>
@@ -274,7 +274,7 @@
           <Property Name="DDD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Fone" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="EstadoCivil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Batizado" Type="Boolean" />
+          <Property Name="Batizado" Type="Boolean" Nullable="false" />
           <Property Name="DataDeNascimento" Type="DateTime" Precision="3" />
           <Property Name="MembroDesde" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Dizimos" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Membros" ToRole="Dizimos" />

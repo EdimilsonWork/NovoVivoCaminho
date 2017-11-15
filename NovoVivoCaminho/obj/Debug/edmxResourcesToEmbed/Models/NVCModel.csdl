@@ -116,7 +116,7 @@
     <Property Name="DDD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
     <Property Name="Fone" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
     <Property Name="EstadoCivil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Batizado" Type="Boolean" />
+    <Property Name="Batizado" Type="Boolean" Nullable="false" />
     <Property Name="DataDeNascimento" Type="DateTime" Precision="3" />
     <Property Name="MembroDesde" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Dizimos" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Membros" ToRole="Dizimos" />

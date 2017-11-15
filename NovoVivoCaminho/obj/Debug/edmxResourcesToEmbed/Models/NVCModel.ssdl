@@ -45,7 +45,7 @@
     <Property Name="DDD" Type="varchar" MaxLength="2" />
     <Property Name="Fone" Type="varchar" MaxLength="9" />
     <Property Name="EstadoCivil" Type="varchar" MaxLength="50" />
-    <Property Name="Batizado" Type="bit" />
+    <Property Name="Batizado" Type="bit" Nullable="false" />
     <Property Name="DataDeNascimento" Type="datetime" />
     <Property Name="MembroDesde" Type="datetime" />
   </EntityType>

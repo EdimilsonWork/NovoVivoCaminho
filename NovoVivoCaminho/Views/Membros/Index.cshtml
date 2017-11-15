@@ -57,6 +57,7 @@
         <th class="text-center">
             @Html.DisplayName("Membro Desde")
         </th>
+
         <th class="text-center">
             @Html.DisplayName("Equipe")
         </th>
@@ -108,7 +109,8 @@
                 @Html.DisplayFor(modelItem => item.EstadoCivil)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Batizado)
+                @Html.CheckBox("Batizado", item.Batizado, new {disabled = "disabled"})
+                @*@Html.DisplayFor(modelItem => item.Batizado)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataDeNascimento)
