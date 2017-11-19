@@ -17,7 +17,7 @@ namespace NovoVivoCaminho.Controllers
         // GET: Dizimos
         public ActionResult Index()
         {
-            var dizimos = db.Dizimos.Include(d => d.Membros);
+            var dizimos = db.Dizimos.Include(d => d.Membros).OrderByDescending(x => x.Data);
             return View(dizimos.ToList());
         }
 
@@ -52,6 +52,9 @@ namespace NovoVivoCaminho.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (dizimos.Data == null)
+                    dizimos.Data = DateTime.Now;
+
                 db.Dizimos.Add(dizimos);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,6 +89,9 @@ namespace NovoVivoCaminho.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (dizimos.Data == null)
+                    dizimos.Data = DateTime.Now;
+
                 db.Entry(dizimos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

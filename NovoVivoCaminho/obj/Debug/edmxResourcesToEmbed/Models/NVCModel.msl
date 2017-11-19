@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="NVCModelStoreContainer" CdmEntityContainer="NVCEntities">
-    <EntitySetMapping Name="Dizimos">
-      <EntityTypeMapping TypeName="NVCModel.Dizimos">
-        <MappingFragment StoreEntitySet="Dizimos">
-          <ScalarProperty Name="Data" ColumnName="Data" />
-          <ScalarProperty Name="Valor" ColumnName="Valor" />
-          <ScalarProperty Name="IDMembro" ColumnName="IDMembro" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Equipes">
       <EntityTypeMapping TypeName="NVCModel.Equipes">
         <MappingFragment StoreEntitySet="Equipes">
@@ -64,6 +54,16 @@
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="IDEquipe" ColumnName="IDEquipe" />
           <ScalarProperty Name="IDIgreja" ColumnName="IDIgreja" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dizimos">
+      <EntityTypeMapping TypeName="NVCModel.Dizimos">
+        <MappingFragment StoreEntitySet="Dizimos">
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="IDMembro" ColumnName="IDMembro" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

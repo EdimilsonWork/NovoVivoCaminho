@@ -13,13 +13,13 @@
 <table class="table table-hover table-striped table-bordered text-center">
     <tr>
         <th class="text-center">
+            @Html.DisplayNameFor(model => model.Membros.Nome)
+        </th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.Valor)
         </th>
         <th class="text-center">
             @Html.DisplayNameFor(model => model.Data)
-        </th>
-        <th class="text-center">
-            @Html.DisplayNameFor(model => model.Membros.Nome)
         </th>
         <th class="text-center">
             Opções
@@ -30,16 +30,16 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Membros.Nome)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Valor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Membros.Nome)
-            </td>
-            <td>
-                @Html.ActionLink("Detalhe", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-xs", type = "button" })
+                @*@Html.ActionLink("Detalhe", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-xs", type = "button" })*@
                 @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs", type = "button" })
                 @Html.ActionLink("Excluir", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-xs", type = "button" })
             </td>

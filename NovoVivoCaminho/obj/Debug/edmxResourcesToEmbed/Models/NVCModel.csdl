@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="NVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="NVCEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Dizimos" EntityType="NVCModel.Dizimos" />
     <EntitySet Name="Equipes" EntityType="NVCModel.Equipes" />
     <EntitySet Name="Usuarios" EntityType="NVCModel.Usuarios" />
     <EntitySet Name="Igrejas" EntityType="NVCModel.Igrejas" />
@@ -14,10 +13,6 @@
       <End Role="Usuarios" EntitySet="Usuarios" />
     </AssociationSet>
     <EntitySet Name="Membros" EntityType="NVCModel.Membros" />
-    <AssociationSet Name="FK_Dizimos_Membros" Association="NVCModel.FK_Dizimos_Membros">
-      <End Role="Membros" EntitySet="Membros" />
-      <End Role="Dizimos" EntitySet="Dizimos" />
-    </AssociationSet>
     <AssociationSet Name="FK_Membros_Equipes" Association="NVCModel.FK_Membros_Equipes">
       <End Role="Equipes" EntitySet="Equipes" />
       <End Role="Membros" EntitySet="Membros" />
@@ -26,17 +21,12 @@
       <End Role="Igrejas" EntitySet="Igrejas" />
       <End Role="Membros" EntitySet="Membros" />
     </AssociationSet>
+    <EntitySet Name="Dizimos" EntityType="NVCModel.Dizimos" />
+    <AssociationSet Name="FK_Dizimos_Membros" Association="NVCModel.FK_Dizimos_Membros">
+      <End Role="Membros" EntitySet="Membros" />
+      <End Role="Dizimos" EntitySet="Dizimos" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Dizimos">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDMembro" Type="Int32" Nullable="false" />
-    <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Data" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Membros" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Dizimos" ToRole="Membros" />
-  </EntityType>
   <EntityType Name="Equipes">
     <Key>
       <PropertyRef Name="ID" />
@@ -119,22 +109,10 @@
     <Property Name="Batizado" Type="Boolean" Nullable="false" />
     <Property Name="DataDeNascimento" Type="DateTime" Precision="3" />
     <Property Name="MembroDesde" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Dizimos" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Membros" ToRole="Dizimos" />
     <NavigationProperty Name="Equipes" Relationship="NVCModel.FK_Membros_Equipes" FromRole="Membros" ToRole="Equipes" />
     <NavigationProperty Name="Igrejas" Relationship="NVCModel.FK_Membros_Igrejas" FromRole="Membros" ToRole="Igrejas" />
+    <NavigationProperty Name="Dizimos" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Membros" ToRole="Dizimos" />
   </EntityType>
-  <Association Name="FK_Dizimos_Membros">
-    <End Type="NVCModel.Membros" Role="Membros" Multiplicity="1" />
-    <End Type="NVCModel.Dizimos" Role="Dizimos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Membros">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Dizimos">
-        <PropertyRef Name="IDMembro" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Membros_Equipes">
     <End Type="NVCModel.Equipes" Role="Equipes" Multiplicity="0..1" />
     <End Type="NVCModel.Membros" Role="Membros" Multiplicity="*" />
@@ -156,6 +134,28 @@
       </Principal>
       <Dependent Role="Membros">
         <PropertyRef Name="IDIgreja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Dizimos">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDMembro" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Data" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Membros" Relationship="NVCModel.FK_Dizimos_Membros" FromRole="Dizimos" ToRole="Membros" />
+  </EntityType>
+  <Association Name="FK_Dizimos_Membros">
+    <End Type="NVCModel.Membros" Role="Membros" Multiplicity="1" />
+    <End Type="NVCModel.Dizimos" Role="Dizimos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Membros">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dizimos">
+        <PropertyRef Name="IDMembro" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

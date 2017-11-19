@@ -100,7 +100,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EstadoCivil)
+            @Html.DisplayName("Estado Civil")
         </dt>
 
         <dd>
@@ -116,7 +116,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataDeNascimento)
+            @Html.DisplayName("Data de Nascimento")
         </dt>
 
         <dd>
@@ -124,7 +124,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MembroDesde)
+            @Html.DisplayName("Membro Desde")
         </dt>
 
         <dd>
@@ -132,24 +132,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Equipes.Nome)
+            @Html.DisplayName("Equipe")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Equipes.Nome)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Igrejas.Nome)
-        </dt>
+        </dt>*@
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.Igrejas.Nome)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>

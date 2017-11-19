@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="38902ef84ffe45deb8c54d72c480685f" Name="Diagram1" ZoomLevel="122">
-        <EntityTypeShape EntityType="NVCModel.Dizimos" Width="1.5" PointX="5.25" PointY="8.875" />
         <EntityTypeShape EntityType="NVCModel.Equipes" Width="1.5" PointX="3" PointY="1.375" />
         <EntityTypeShape EntityType="NVCModel.Usuarios" Width="1.5" PointX="3" PointY="3.875" />
         <EntityTypeShape EntityType="NVCModel.Igrejas" Width="1.5" PointX="0.75" PointY="5.625" />
         <AssociationConnector Association="NVCModel.FK_Equipes_Igrejas" />
         <AssociationConnector Association="NVCModel.FK_Usuarios_Igrejas" />
         <EntityTypeShape EntityType="NVCModel.Membros" Width="1.5" PointX="5.25" PointY="2.125" />
-        <AssociationConnector Association="NVCModel.FK_Dizimos_Membros" />
         <AssociationConnector Association="NVCModel.FK_Membros_Equipes" />
         <AssociationConnector Association="NVCModel.FK_Membros_Igrejas" />
+        <EntityTypeShape EntityType="NVCModel.Dizimos" Width="1.5" PointX="7.5" PointY="3.625" />
+        <AssociationConnector Association="NVCModel.FK_Dizimos_Membros" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

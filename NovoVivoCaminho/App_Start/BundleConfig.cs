@@ -26,6 +26,12 @@ namespace NovoVivoCaminho
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            // Validações no padrão brasileiro
+            bundles.Add(
+                new ScriptBundle("~/bundles/validations_pt-br")
+                    .Include(
+                        "~/Scripts/jquery.validate.custom.pt-br*"));
         }
     }
 }

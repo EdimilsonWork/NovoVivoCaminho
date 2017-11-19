@@ -101,7 +101,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EstadoCivil)
+            @Html.DisplayName("Estado Civil")
         </dt>
 
         <dd>
@@ -117,7 +117,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DataDeNascimento)
+            @Html.DisplayName("Data de Nascimento")
         </dt>
 
         <dd>
@@ -125,7 +125,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MembroDesde)
+            @Html.DisplayName("Membro Desde")
         </dt>
 
         <dd>
@@ -133,20 +133,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Equipes.Nome)
+            @Html.DisplayName("Equipe")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Equipes.Nome)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Igrejas.Nome)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Igrejas.Nome)
-        </dd>
+        </dd>*@
 
     </dl>
 
@@ -154,8 +154,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
         </div>
     }
 </div>
