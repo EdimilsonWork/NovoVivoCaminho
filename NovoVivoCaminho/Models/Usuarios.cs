@@ -11,7 +11,8 @@ namespace NovoVivoCaminho.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Usuarios
     {
         public int ID { get; set; }
@@ -19,7 +20,13 @@ namespace NovoVivoCaminho.Models
         public string Login { get; set; }
         public string Senha { get; set; }
         public string Nome { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime DataCriacao { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DataAtualizacao { get; set; }
         public bool Ativo { get; set; }
     
