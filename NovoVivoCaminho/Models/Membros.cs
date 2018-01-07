@@ -24,17 +24,29 @@ namespace NovoVivoCaminho.Models
         public int ID { get; set; }
         public int IDIgreja { get; set; }
         public Nullable<int> IDEquipe { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Nome { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Tipo { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Endereco { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Numero { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Complemento { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Bairro { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Cidade { get; set; }
+        [StringLength(2, ErrorMessage = "Tamanho máximo de  caracteres. Exemplo: SP")]
         public string UF { get; set; }
+        [StringLength(8, ErrorMessage = "Tamanho máximo de  caracteres. Exemplo: 00000000")]
         public string CEP { get; set; }
+        [StringLength(2, ErrorMessage = "Tamanho máximo de  caracteres. Exemplo: 11")]
         public string DDD { get; set; }
+        [StringLength(9, ErrorMessage = "Tamanho máximo de  caracteres. Exemplo: 999999999")]
         public string Fone { get; set; }
+        [StringLength(50, ErrorMessage = "Tamanho máximo de 50 caracteres.")]
         public string EstadoCivil { get; set; }
         public bool Batizado { get; set; }
 

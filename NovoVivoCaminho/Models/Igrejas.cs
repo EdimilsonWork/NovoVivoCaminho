@@ -11,6 +11,7 @@ namespace NovoVivoCaminho.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Igrejas
     {
@@ -23,6 +24,7 @@ namespace NovoVivoCaminho.Models
         }
     
         public int ID { get; set; }
+        [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Nome { get; set; }
         public bool Ativo { get; set; }
         public bool Equipe { get; set; }
