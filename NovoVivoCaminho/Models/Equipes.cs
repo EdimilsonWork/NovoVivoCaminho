@@ -12,7 +12,7 @@ namespace NovoVivoCaminho.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Equipes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,6 +25,7 @@ namespace NovoVivoCaminho.Models
         [StringLength(250, ErrorMessage = "Tamanho máximo de 250 caracteres.")]
         public string Nome { get; set; }
         public int IDIgreja { get; set; }
+        public bool Ativo { get; set; }
     
         public virtual Igrejas Igrejas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

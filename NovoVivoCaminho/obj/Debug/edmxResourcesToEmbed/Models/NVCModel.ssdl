@@ -16,6 +16,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="IDIgreja" Type="int" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Igrejas">
     <Key>
@@ -48,6 +49,7 @@
     <Property Name="Batizado" Type="bit" Nullable="false" />
     <Property Name="DataDeNascimento" Type="datetime" />
     <Property Name="MembroDesde" Type="datetime" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>

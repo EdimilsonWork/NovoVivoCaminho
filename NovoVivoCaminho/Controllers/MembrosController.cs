@@ -96,17 +96,28 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,IDIgreja,IDEquipe,Nome,Tipo,Endereco,Numero,Complemento,Bairro,Cidade,UF,CEP,DDD,Fone,EstadoCivil,Batizado,DataDeNascimento,MembroDesde")] Membros membros)
+        public ActionResult Edit([Bind(Include = "ID,IDIgreja,IDEquipe,Nome,Tipo,Endereco,Numero,Complemento,Bairro,Cidade,UF,CEP,DDD,Fone,EstadoCivil,Batizado,DataDeNascimento,MembroDesde,Ativo")] Membros membros)
         {
-            if (ModelState.IsValid)
+
+            if (Session["usuarioLogadoIDIgreja"] != null)
             {
-                db.Entry(membros).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
+
+                if (ModelState.IsValid)
+                {
+                    membros.IDIgreja = idIgreja;
+
+                    db.Entry(membros).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.IDEquipe = new SelectList(db.Equipes, "ID", "Nome", membros.IDEquipe);
+                ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome", membros.IDIgreja);
+                return View(membros);
             }
-            ViewBag.IDEquipe = new SelectList(db.Equipes, "ID", "Nome", membros.IDEquipe);
-            ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome", membros.IDIgreja);
-            return View(membros);
+            else
+                return RedirectToAction("Index", "Membros");
         }
 
         // GET: Membros/Delete/5

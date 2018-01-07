@@ -217,9 +217,8 @@
       <DependentUpon>NVCModel.edmx</DependentUpon>
       <LastGenOutput>NVCModel.cs</LastGenOutput>
     </Content>
-    <None Include="Resources\WallpaperLogin.bmp" />
-    <None Include="Resources\WallpaperLogin.jpg" />
-    <None Include="Resources\WallpaperLogin2.jpg" />
+    <Content Include="Content\bootstrap-toggle.less" />
+    <Content Include="Scripts\bootstrap-toggle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -288,6 +287,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

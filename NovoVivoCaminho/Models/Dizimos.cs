@@ -12,17 +12,13 @@ namespace NovoVivoCaminho.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Dizimos
     {
         public int ID { get; set; }
         public int IDMembro { get; set; }
-
         [DataType(DataType.Currency)]
-        //[DisplayFormat(DataFormatString = "{0:0.##}")]
         public Nullable<decimal> Valor { get; set; }
-
-        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Data { get; set; }
     

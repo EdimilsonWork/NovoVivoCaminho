@@ -15,6 +15,9 @@
         <th class="text-center">
             @Html.DisplayNameFor(model => model.Nome)
         </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
         @*<th class="text-center">
             @Html.DisplayNameFor(model => model.Igrejas.Nome)
         </th>*@
@@ -28,6 +31,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
             </td>
             @*<td>
                 @Html.DisplayFor(modelItem => item.Igrejas.Nome)

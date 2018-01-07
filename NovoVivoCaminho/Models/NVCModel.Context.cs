@@ -25,10 +25,10 @@ namespace NovoVivoCaminho.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Equipes> Equipes { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Igrejas> Igrejas { get; set; }
-        public virtual DbSet<Membros> Membros { get; set; }
         public virtual DbSet<Dizimos> Dizimos { get; set; }
+        public virtual DbSet<Equipes> Equipes { get; set; }
+        public virtual DbSet<Membros> Membros { get; set; }
     }
 }
