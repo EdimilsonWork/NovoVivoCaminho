@@ -90,3 +90,5 @@ C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.csproj.CoreCompileInputs.cache
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.pdb
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.Properties.Resources.resources
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.csproj.GenerateResource.Cache
