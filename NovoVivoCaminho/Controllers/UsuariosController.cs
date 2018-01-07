@@ -21,6 +21,11 @@ namespace NovoVivoCaminho.Controllers
             return View(usuarios.ToList());
         }
 
+        public ActionResult Acesso()
+        {
+            return View();
+        }
+
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {

@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Views\DecimalModelBinder.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -196,6 +197,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\login.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -248,7 +250,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index_OLD.cshtml" />
     <Content Include="Views\Dizimos\Create.cshtml" />
     <Content Include="Views\Dizimos\Delete.cshtml" />
     <Content Include="Views\Dizimos\Details.cshtml" />
@@ -274,6 +276,7 @@
     <Content Include="Views\Membros\Details.cshtml" />
     <Content Include="Views\Membros\Edit.cshtml" />
     <Content Include="Views\Membros\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

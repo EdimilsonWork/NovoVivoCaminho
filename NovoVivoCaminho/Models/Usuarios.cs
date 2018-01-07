@@ -17,7 +17,10 @@ namespace NovoVivoCaminho.Models
     {
         public int ID { get; set; }
         public int IDIgreja { get; set; }
+        [Required(ErrorMessage = "Informe o nome do usuário", AllowEmptyStrings = false)]
         public string Login { get; set; }
+        [Required(ErrorMessage = "Informe a senha do usuário", AllowEmptyStrings = false)]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
         public string Senha { get; set; }
         public string Nome { get; set; }
 
