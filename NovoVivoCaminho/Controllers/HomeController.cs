@@ -34,10 +34,13 @@ namespace NovoVivoCaminho.Controllers
             {
                 using(NVCEntities nvc = new NVCEntities())
                 {
-                    var u = nvc.Usuarios.Where(x => x.Login.Equals(usuario.Login) && x.Senha.Equals(usuario.Senha)).FirstOrDefault();
+                    Usuarios u = nvc.Usuarios.Where(x => x.Login.Equals(usuario.Login) && x.Senha.Equals(usuario.Senha)).FirstOrDefault();
+
                     if (u != null)
                     {
-                        if (u.Ativo.Equals(false))
+                        Igrejas igreja = nvc.Igrejas.Where(x => x.ID.Equals(u.IDIgreja)).FirstOrDefault();
+
+                        if (u.Ativo.Equals(false) || igreja.Ativo.Equals(false))
                         {
                             return View(usuario);
                         }
