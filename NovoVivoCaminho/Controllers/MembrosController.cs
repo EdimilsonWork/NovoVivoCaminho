@@ -18,8 +18,15 @@ namespace NovoVivoCaminho.Controllers
         // GET: Membros
         public ActionResult Index()
         {
-            var membros = db.Membros.Include(m => m.Equipes).Include(m => m.Igrejas).OrderBy(x => x.Nome);
-            return View(membros.ToList());
+            if (Session["usuarioLogadoIDIgreja"] != null)
+            {
+                int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
+
+                var membros = db.Membros.Where(x => x.IDIgreja.Equals(idIgreja)).Include(m => m.Equipes).Include(m => m.Igrejas).OrderBy(x => x.Nome);
+                return View(membros.ToList());
+            }
+            else
+                return RedirectToAction("Index", "Usuarios");
         }
 
         // GET: Membros/Details/5

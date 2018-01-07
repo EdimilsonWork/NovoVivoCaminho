@@ -17,8 +17,15 @@ namespace NovoVivoCaminho.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            var usuarios = db.Usuarios.Include(u => u.Igrejas);
-            return View(usuarios.ToList());
+            if (Session["usuarioLogadoIDIgreja"] != null)
+            {
+                int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
+
+                var usuarios = db.Usuarios.Where(x => x.IDIgreja.Equals(idIgreja)).Include(u => u.Igrejas);
+                return View(usuarios.ToList());
+            }
+            else
+                return RedirectToAction("Index", "Usuarios");
         }
 
         public ActionResult Acesso()
@@ -57,9 +64,16 @@ namespace NovoVivoCaminho.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Usuarios.Add(usuarios);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (Session["usuarioLogadoIDIgreja"] != null)
+                {
+                    int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
+                    usuarios.DataCriacao = DateTime.Now;
+                    usuarios.IDIgreja = idIgreja;
+
+                    db.Usuarios.Add(usuarios);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome", usuarios.IDIgreja);
@@ -91,6 +105,8 @@ namespace NovoVivoCaminho.Controllers
         {
             if (ModelState.IsValid)
             {
+                usuarios.DataAtualizacao = DateTime.Now;
+
                 db.Entry(usuarios).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

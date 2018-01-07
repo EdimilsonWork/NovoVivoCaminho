@@ -1,70 +1,70 @@
 ﻿@model IEnumerable<NovoVivoCaminho.Models.Usuarios>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Usuarios</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novo", "Create")
 </p>
-<table class="table">
+<table class="table table-hover table-striped table-bordered text-center">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Senha)
-        </th>
-        <th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.Nome)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataCriacao)
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Login)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataAtualizacao)
+        @*<th class="text-center">
+                @Html.DisplayNameFor(model => model.Senha)
+            </th>*@
+        <th class="text-center">
+            @Html.DisplayName("Inserido")
         </th>
-        <th>
+        <th class="text-center">
+            @Html.DisplayName("Atualização")
+        </th>
+        <th class="text-center">
             @Html.DisplayNameFor(model => model.Ativo)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Igrejas.Nome)
+        <th class="text-center">
+            @Html.DisplayName("Igreja")
         </th>
-        <th></th>
+        <th class="text-center"></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Senha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataCriacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataAtualizacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Igrejas.Nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Senha)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCriacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAtualizacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Igrejas.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-xs", type = "button" })
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-xs", type = "button" })
+            </td>
+        </tr>
+    }
 
 </table>

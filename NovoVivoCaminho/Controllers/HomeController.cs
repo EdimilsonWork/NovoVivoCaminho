@@ -37,12 +37,21 @@ namespace NovoVivoCaminho.Controllers
                     var u = nvc.Usuarios.Where(x => x.Login.Equals(usuario.Login) && x.Senha.Equals(usuario.Senha)).FirstOrDefault();
                     if (u != null)
                     {
-                        Session["usuarioLogadoID"] = u.ID.ToString();
-                        Session["nomeUsuarioLogado"] = u.Nome.ToString();
-                        return RedirectToAction("Index");
+                        if (u.Ativo.Equals(false))
+                        {
+                            return View(usuario);
+                        }
+                        else
+                        {
+                            Session["usuarioLogadoID"] = u.ID.ToString();
+                            Session["usuarioLogadoIDIgreja"] = u.IDIgreja.ToString();
+                            Session["nomeUsuarioLogado"] = u.Nome.ToString();
+                            return RedirectToAction("Index");
+                        }
                     }
                 }
             }
+
             return View(usuario);
         }
 
