@@ -20,7 +20,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Igrejas", "Index", "Igrejas", new { area = "" }, new { @style = "background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px" })</li>
+                    @*<li>@Html.ActionLink("Igrejas", "Index", "Igrejas", new { area = "" }, new { @style = "background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px" })</li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle dro" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
+                            Controle
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Igrejas", "Index", "Igrejas")</li>
+                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                        </ul>
+                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle dro" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
                             Cadastros
@@ -29,7 +39,6 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Equipes", "Index", "Equipes")</li>
                             <li>@Html.ActionLink("Membros", "Index", "Membros")</li>
-                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
