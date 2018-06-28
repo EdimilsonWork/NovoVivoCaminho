@@ -20,10 +20,7 @@ namespace NovoVivoCaminho.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ClaimsIdentity identity = User.Identity as ClaimsIdentity;
-            string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
-
-            var usuarios = db.Usuarios.Where(x => x.IDIgreja == db.Usuarios.FirstOrDefault(u => u.Login == login).IDIgreja).Include(u => u.Igrejas);
+            var usuarios = db.Usuarios.Include(u => u.Igrejas);
             return View(usuarios.ToList());
         }
 
