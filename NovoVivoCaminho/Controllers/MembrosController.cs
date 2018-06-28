@@ -51,8 +51,7 @@ namespace NovoVivoCaminho.Controllers
             ViewBag.TiposDeEnderecos = comum.TiposDeEnderecos;
             ViewBag.EstadoCivil = comum.EstadoCivil;
 
-            ViewBag.IDEquipe = new SelectList(db.Equipes.OrderBy(x => x.Nome), "ID", "Nome");
-            ViewBag.IDIgreja = new SelectList(db.Igrejas.OrderBy(x => x.Nome), "ID", "Nome");
+            ViewBag.IDEquipe = new SelectList(db.Equipes.Where(e => e.Ativo == true).OrderBy(x => x.Nome), "ID", "Nome");
             return View();
         }
 
@@ -66,6 +65,11 @@ namespace NovoVivoCaminho.Controllers
         {
             if (ModelState.IsValid)
             {
+                ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+                string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
+
+                membros.IDIgreja = db.Usuarios.FirstOrDefault(u => u.Login == login).IDIgreja;
+
                 db.Membros.Add(membros);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -102,26 +106,23 @@ namespace NovoVivoCaminho.Controllers
         [Authorize]
         public ActionResult Edit([Bind(Include = "ID,IDIgreja,IDEquipe,Nome,Tipo,Endereco,Numero,Complemento,Bairro,Cidade,UF,CEP,DDD,Fone,EstadoCivil,Batizado,DataDeNascimento,MembroDesde,Ativo")] Membros membros)
         {
-
-            if (Session["usuarioLogadoIDIgreja"] != null)
+            if (ModelState.IsValid)
             {
-                int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
 
-                if (ModelState.IsValid)
-                {
-                    membros.IDIgreja = idIgreja;
+                ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+                string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
 
-                    db.Entry(membros).State = EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                membros.IDIgreja = db.Usuarios.FirstOrDefault(u => u.Login == login).IDIgreja;
 
-                ViewBag.IDEquipe = new SelectList(db.Equipes, "ID", "Nome", membros.IDEquipe);
-                ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome", membros.IDIgreja);
-                return View(membros);
+                db.Entry(membros).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            else
-                return RedirectToAction("Index", "Membros");
+
+            ViewBag.IDEquipe = new SelectList(db.Equipes, "ID", "Nome", membros.IDEquipe);
+            ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome", membros.IDIgreja);
+            return View(membros);
+
         }
 
         // GET: Membros/Delete/5

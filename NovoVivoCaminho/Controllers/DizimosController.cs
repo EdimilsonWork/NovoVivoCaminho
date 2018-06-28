@@ -46,7 +46,7 @@ namespace NovoVivoCaminho.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.IDMembro = new SelectList(db.Membros.OrderBy(x => x.Nome), "ID", "Nome");
+            ViewBag.IDMembro = new SelectList(db.Membros.Where(m => m.Ativo == true).OrderBy(x => x.Nome), "ID", "Nome");
             return View();
         }
 

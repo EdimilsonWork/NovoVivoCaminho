@@ -19,6 +19,7 @@ namespace NovoVivoCaminho.Models
         public int IDMembro { get; set; }
         [DataType(DataType.Currency)]
         public Nullable<decimal> Valor { get; set; }
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Data { get; set; }
     
