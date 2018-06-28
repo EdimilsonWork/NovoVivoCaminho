@@ -20,8 +20,21 @@ namespace NovoVivoCaminho.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var usuarios = db.Usuarios.Include(u => u.Igrejas);
-            return View(usuarios.ToList());
+            ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+            string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
+
+            //TODO: Criar atributo "ADMINISTRADOR".
+            if (login == "edimilson")
+            {
+                var usuarios = db.Usuarios.Include(u => u.Igrejas);
+                return View(usuarios.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Painel");
+            }
+
+
         }
 
         [Authorize]
