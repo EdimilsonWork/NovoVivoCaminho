@@ -19,37 +19,59 @@
                 @Html.ActionLink("Novo e Vivo Caminho", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "background-color:#C81E32; color:#FEFDC4; border-style:solid; border-color:#896872; border-radius: 7px" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li>@Html.ActionLink("Igrejas", "Index", "Igrejas", new { area = "" }, new { @style = "background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px" })</li>*@
-                    <li class="dropdown">
-                        <a class="dropdown-toggle dro" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
-                            Controle
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Igrejas", "Index", "Igrejas")</li>
-                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle dro" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
-                            Cadastros
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Equipes", "Index", "Equipes")</li>
-                            <li>@Html.ActionLink("Membros", "Index", "Membros")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
-                            Financeiro
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Dizimos e Ofertas", "Index", "Dizimos")</li>
-                        </ul>
-                    </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        @if (User.Identity.Name.Equals("EDIMILSON JOSE DA SILVA JUNIOR"))
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle dro" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
+                                    Controle
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Igrejas", "Index", "Igrejas")</li>
+                                    <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                                </ul>
+                            </li>
+                        }
+                        <li class="dropdown">
+                            <a class="dropdown-toggle dro" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
+                                Cadastros
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Equipes", "Index", "Equipes")</li>
+                                <li>@Html.ActionLink("Membros", "Index", "Membros")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="background-color:#FEFDC4; color:#E46674; border-style:solid; border-color:#896872; border-radius: 7px">
+                                Financeiro
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Dizimos e Ofertas", "Index", "Dizimos")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                }
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@User.Identity.Name <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Alterar Senha", "AlterarSenha", "Perfil")</li>
+                                <li>@Html.ActionLink("Sair", "Logout", "Autenticacao")</li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Autenticacao")</li>
+                        <li>@*@Html.ActionLink("Cadastre-se", "Cadastrar", "Autenticacao")*@</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -64,6 +86,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    @RenderSection("scripts", false)
 </body>
 </html>

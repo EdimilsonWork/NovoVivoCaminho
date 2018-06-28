@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NovoVivoCaminho.Models;
+using System.Security.Claims;
 
 namespace NovoVivoCaminho.Controllers
 {
@@ -16,20 +17,19 @@ namespace NovoVivoCaminho.Controllers
         private Comum comum = new Comum();
 
         // GET: Membros
+        [Authorize]
         public ActionResult Index()
         {
-            if (Session["usuarioLogadoIDIgreja"] != null)
-            {
-                int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
+            ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+            string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
 
-                var membros = db.Membros.Where(x => x.IDIgreja.Equals(idIgreja)).Include(m => m.Equipes).Include(m => m.Igrejas).OrderBy(x => x.Nome);
-                return View(membros.ToList());
-            }
-            else
-                return RedirectToAction("Index", "Usuarios");
+            var membros = db.Membros.Where(m => m.IDIgreja == db.Usuarios.Where(u => u.Login == login).FirstOrDefault().IDIgreja).Include(m => m.Equipes).Include(m => m.Igrejas).OrderBy(x => x.Nome);
+            return View(membros.ToList());
+
         }
 
         // GET: Membros/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,6 +45,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Membros/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.TiposDeEnderecos = comum.TiposDeEnderecos;
@@ -60,6 +61,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,IDIgreja,IDEquipe,Nome,Tipo,Endereco,Numero,Complemento,Bairro,Cidade,UF,CEP,DDD,Fone,EstadoCivil,Batizado,DataDeNascimento,MembroDesde")] Membros membros)
         {
             if (ModelState.IsValid)
@@ -75,6 +77,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Membros/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,6 +99,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,IDIgreja,IDEquipe,Nome,Tipo,Endereco,Numero,Complemento,Bairro,Cidade,UF,CEP,DDD,Fone,EstadoCivil,Batizado,DataDeNascimento,MembroDesde,Ativo")] Membros membros)
         {
 
@@ -121,6 +125,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Membros/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,6 +143,7 @@ namespace NovoVivoCaminho.Controllers
         // POST: Membros/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Membros membros = db.Membros.Find(id);

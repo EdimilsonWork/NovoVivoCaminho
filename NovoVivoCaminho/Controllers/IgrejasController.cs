@@ -15,12 +15,14 @@ namespace NovoVivoCaminho.Controllers
         private NVCEntities db = new NVCEntities();
 
         // GET: Igrejas
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Igrejas.ToList().OrderBy(x => x.Nome));
         }
 
         // GET: Igrejas/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Igrejas/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Nome,Ativo,Equipe")] Igrejas igrejas)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Igrejas/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,Nome,Ativo,Equipe")] Igrejas igrejas)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Igrejas/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace NovoVivoCaminho.Controllers
         // POST: Igrejas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Igrejas igrejas = db.Igrejas.Find(id);
@@ -115,6 +123,7 @@ namespace NovoVivoCaminho.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

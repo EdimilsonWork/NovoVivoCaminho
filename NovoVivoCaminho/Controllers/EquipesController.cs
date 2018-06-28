@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NovoVivoCaminho.Models;
+using System.Security.Claims;
 
 namespace NovoVivoCaminho.Controllers
 {
@@ -15,20 +16,19 @@ namespace NovoVivoCaminho.Controllers
         private NVCEntities db = new NVCEntities();
 
         // GET: Equipes
+        [Authorize]
         public ActionResult Index()
         {
-            if (Session["usuarioLogadoIDIgreja"] != null)
-            {
-                int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
+            ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+            string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
 
-                var equipes = db.Equipes.Where(x => x.IDIgreja.Equals(idIgreja)).Include(e => e.Igrejas).OrderBy(x => x.Nome);
-                return View(equipes.ToList());
-            }
-            else
-                return RedirectToAction("Index", "Usuarios");
+            var equipes = db.Equipes.Where(e => e.IDIgreja == db.Usuarios.Where(u => u.Login == login).FirstOrDefault().IDIgreja).Include(e => e.Igrejas).OrderBy(x => x.Nome);
+
+            return View(equipes.ToList());
         }
 
         // GET: Equipes/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,6 +44,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Equipes/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome");
@@ -55,6 +56,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,Nome,IDIgreja,Ativo")] Equipes equipes)
         {
 
@@ -79,6 +81,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Equipes/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +102,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,Nome,IDIgreja,Ativo")] Equipes equipes)
         {
             if (Session["usuarioLogadoIDIgreja"] != null)
@@ -122,6 +126,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Equipes/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -139,6 +144,7 @@ namespace NovoVivoCaminho.Controllers
         // POST: Equipes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Equipes equipes = db.Equipes.Find(id);

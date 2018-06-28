@@ -59,8 +59,13 @@ C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Micro
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.AI.WindowsServer.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.ApplicationInsights.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.dll
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.Security.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Newtonsoft.Json.dll
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Owin.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\System.Web.Helpers.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\System.Web.Mvc.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\System.Web.Optimization.dll
@@ -72,6 +77,10 @@ C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\WebGr
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\EntityFramework.xml
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\EntityFramework.SqlServer.xml
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.xml
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.Security.xml
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\System.Web.Helpers.xml
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\System.Web.Mvc.xml
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\System.Web.Optimization.xml
@@ -86,9 +95,9 @@ C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Micro
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\bin\Microsoft.AI.Web.xml
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.csprojResolveAssemblyReference.cache
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.Properties.Resources.resources
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.csproj.GenerateResource.Cache
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.csproj.CoreCompileInputs.cache
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.dll
 C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.pdb
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.Properties.Resources.resources
-C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.csproj.GenerateResource.Cache
+C:\Users\Edimilson Jr\Documents\GitHub\NovoVivoCaminho\NovoVivoCaminho\obj\Debug\NovoVivoCaminho.csprojResolveAssemblyReference.cache

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NovoVivoCaminho.Models;
+using System.Security.Claims;
+using NovoVivoCaminho.Utils;
 
 namespace NovoVivoCaminho.Controllers
 {
@@ -15,25 +17,24 @@ namespace NovoVivoCaminho.Controllers
         private NVCEntities db = new NVCEntities();
 
         // GET: Usuarios
+        [Authorize]
         public ActionResult Index()
         {
-            if (Session["usuarioLogadoIDIgreja"] != null)
-            {
-                int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
+            ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+            string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
 
-                var usuarios = db.Usuarios.Where(x => x.IDIgreja.Equals(idIgreja)).Include(u => u.Igrejas);
-                return View(usuarios.ToList());
-            }
-            else
-                return RedirectToAction("Index", "Usuarios");
+            var usuarios = db.Usuarios.Where(x => x.IDIgreja == db.Usuarios.FirstOrDefault(u => u.Login == login).IDIgreja).Include(u => u.Igrejas);
+            return View(usuarios.ToList());
         }
 
+        [Authorize]
         public ActionResult Acesso()
         {
             return View();
         }
 
         // GET: Usuarios/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,6 +50,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Usuarios/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.IDIgreja = new SelectList(db.Igrejas.OrderBy(x => x.Nome), "ID", "Nome");
@@ -60,27 +62,27 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,IDIgreja,Login,Senha,Nome,DataCriacao,DataAtualizacao,Ativo")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
-                if (Session["usuarioLogadoIDIgreja"] != null)
-                {
-                    int idIgreja = int.Parse(Session["usuarioLogadoIDIgreja"].ToString());
-                    usuarios.DataCriacao = DateTime.Now;
-                    usuarios.IDIgreja = idIgreja;
+                ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+                string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
 
-                    db.Usuarios.Add(usuarios);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                usuarios.DataCriacao = DateTime.Now;
+                usuarios.Senha = Hash.GerarHash(usuarios.Senha);
+
+                db.Usuarios.Add(usuarios);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
             }
-
-            ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome", usuarios.IDIgreja);
             return View(usuarios);
         }
 
         // GET: Usuarios/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,21 +103,35 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,IDIgreja,Login,Senha,Nome,DataCriacao,DataAtualizacao,Ativo")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
-                usuarios.DataAtualizacao = DateTime.Now;
+                Usuarios user = db.Usuarios.FirstOrDefault(u => u.ID == usuarios.ID);
 
-                db.Entry(usuarios).State = EntityState.Modified;
+                if (user.Login != usuarios.Login)
+                    user.Login = usuarios.Login;
+
+                if (usuarios.Nome.ToUpper() != user.Nome)
+                    user.Nome = usuarios.Nome.ToUpper();
+
+                if (usuarios.Senha != user.Senha)
+                    user.Senha = Hash.GerarHash(usuarios.Senha);
+
+                user.DataAtualizacao = DateTime.Now;
+
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            ViewBag.IDIgreja = new SelectList(db.Igrejas, "ID", "Nome", usuarios.IDIgreja);
+
             return View(usuarios);
         }
 
         // GET: Usuarios/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,6 +149,7 @@ namespace NovoVivoCaminho.Controllers
         // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Usuarios usuarios = db.Usuarios.Find(id);

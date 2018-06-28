@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NovoVivoCaminho.Models;
+using System.Security.Claims;
 
 namespace NovoVivoCaminho.Controllers
 {
@@ -15,13 +16,18 @@ namespace NovoVivoCaminho.Controllers
         private NVCEntities db = new NVCEntities();
 
         // GET: Dizimos
+        [Authorize]
         public ActionResult Index()
         {
-            var dizimos = db.Dizimos.Include(d => d.Membros).OrderByDescending(x => x.Data);
+            ClaimsIdentity identity = User.Identity as ClaimsIdentity;
+            string login = identity.Claims.FirstOrDefault(c => c.Type == "Login").Value;
+
+            var dizimos = db.Dizimos.Include(d => d.Membros).Where(m => m.Membros.IDIgreja == db.Usuarios.Where(u => u.Login == login).FirstOrDefault().IDIgreja).OrderByDescending(x => x.Data);
             return View(dizimos.ToList());
         }
 
         // GET: Dizimos/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +43,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Dizimos/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.IDMembro = new SelectList(db.Membros.OrderBy(x => x.Nome), "ID", "Nome");
@@ -48,6 +55,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "ID,IDMembro,Valor,Data")] Dizimos dizimos)
         {
             if (ModelState.IsValid)
@@ -65,6 +73,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Dizimos/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +94,7 @@ namespace NovoVivoCaminho.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,IDMembro,Valor,Data")] Dizimos dizimos)
         {
             if (ModelState.IsValid)
@@ -101,6 +111,7 @@ namespace NovoVivoCaminho.Controllers
         }
 
         // GET: Dizimos/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,6 +129,7 @@ namespace NovoVivoCaminho.Controllers
         // POST: Dizimos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Dizimos dizimos = db.Dizimos.Find(id);
